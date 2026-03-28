@@ -30,7 +30,7 @@ library(yaml)
 library(here)
 
 # ------------------------------------------------------
-# 2. Função responsável pela configuração do log
+# Função responsável pela configuração do log
 # ------------------------------------------------------
 setup_logger <- function() {
   
