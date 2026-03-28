@@ -1,0 +1,15 @@
+api_ibge:
+  url: "https://servicodados.ibge.gov.br/api/v1/paises/BR/indicadores"
+
+src:
+  api: "src/api/api_processing.R"
+  statistic: "src/statistical/statistical_processing.R"
+  graphic: "src/graphics/graphics_processing.R"
+
+utils:
+  logger: "utils/log_logger/logger.R"
+  handler: "utils/error/error_handler.R"
+  helper: "utils/helper/helpers.R"
+
+logs:
+  file: "logs/pipeline.log"
