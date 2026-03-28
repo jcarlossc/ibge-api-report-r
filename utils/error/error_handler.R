@@ -27,6 +27,10 @@
 #   Deve ser utilizada dentro de blocos tryCatch
 # ------------------------------------------------------------
 
+
+# --------------------------------------------------------
+# Função responsável pela centralização de erros
+# --------------------------------------------------------
 handle_error <- function(e, step = "DESCONHECIDO") {
   
   tryCatch({
