@@ -12,6 +12,7 @@ config_paths <- suppressWarnings(
 
 source(here(config_paths$src$api))
 source(here(config_paths$utils$logger))
+source(here(config_paths$src$graphic))
 
 
 setup_logger()
@@ -22,3 +23,4 @@ api <- get_api(url)
 
 class(api)
 api
+get_graphics(api)
