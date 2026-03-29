@@ -3,7 +3,7 @@ api_ibge:
 
 src:
   api: "src/api/api_processing.R"
-  statistic: "src/statistical/statistical_processing.R"
+  statistic: "src/statistic/statistical_processing.R"
   graphic: "src/graphics/graphics_processing.R"
 
 utils:
@@ -13,3 +13,4 @@ utils:
 
 logs:
   file: "logs/pipeline.log"
+  
