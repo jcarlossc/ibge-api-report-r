@@ -1,5 +1,5 @@
 # ======================================================================
-# Arquivo: api_processing.R
+# Arquivo: statistic_processing.R
 # Pipeline baseado em R para consumo de API IBGE, processamento e 
 # implementação de relatório Estatístico.
 # Autor: Carlos da Costa
