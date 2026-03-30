@@ -110,7 +110,7 @@ get_api <- function(url){
   }, 
     
     # ---------------------------------------------------------
-    # TRATAMENTO DE ERROS
+    # Tratamento de erro
     # ---------------------------------------------------------
     error = function(e) {
       
@@ -121,7 +121,7 @@ get_api <- function(url){
   },
     
     # ---------------------------------------------------------
-    # TRATAMENTO DE WARNINGS
+    # Tratamento de warnings
     # ---------------------------------------------------------
     warning = function(w) {
       
