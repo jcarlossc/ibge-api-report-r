@@ -139,7 +139,7 @@ get_graphics <- function(tibble_files) {
     
     log_warn(glue("Aviso durante geração do gráfico: {w$message}"))
     
-    invokeRestart("muffleWarning")
+    #invokeRestart("muffleWarning")
   },
   # ---------------------------------------------------------
   # Finalização
