@@ -25,6 +25,9 @@
 # - Implementa tratamento de erros com tryCatch
 # ------------------------------------------------------------
 
+# --------------------------------------------------------
+# Pacotes utilizados
+# --------------------------------------------------------
 library(logger)
 library(glue)
 
@@ -115,6 +118,19 @@ get_statistics <- function(tibble_files) {
       extremos = list(
         ano_max = ano_max,
         ano_min = ano_min
+      ),
+      formatado = list(
+        media_format = round(media / 1e6),
+        mediana_format = round(mediana / 1e6),
+        desvio_padrao_format = round(desvio_padrao / 1e6),
+        
+        crescimento_total_percentual = paste0(
+          round(crescimento_total, 2), "%"
+        ),
+        
+        cagr_percentual = paste0(
+          round(cagr, 2), "%"
+        )
       )
     )
     
@@ -134,7 +150,7 @@ get_statistics <- function(tibble_files) {
     
     log_error(glue("Erro no cálculo de estatísticas: {e$message}"))
     
-    stop(glue("[STATS_ERROR] Falha na função calcular_estatisticas | {e$message}"))
+    stop(glue("[STATS_ERROR] Falha na função get_statistics | {e$message}"))
   },
   
   # ---------------------------------------------------------
@@ -144,7 +160,7 @@ get_statistics <- function(tibble_files) {
     
     log_warn(glue("Aviso durante cálculo: {w$message}"))
     
-    invokeRestart("muffleWarning")
+    #invokeRestart("muffleWarning")
   },
   
   # ---------------------------------------------------------
