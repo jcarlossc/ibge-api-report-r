@@ -73,7 +73,7 @@ setup_logger <- function() {
       format = config_logging$format$format
     ))
     
-    log_path <- config_paths$logs$file
+    log_path <- here(config_paths$logs$file)
     
     # Validação 
     if (is.null(log_path) || !is.character(log_path) || length(log_path) != 1) {
@@ -92,7 +92,7 @@ setup_logger <- function() {
     # --------------------------------------------------------
     # Define para onde o log será enviado.
     # --------------------------------------------------------
-    log_appender(appender_file(config_path$logs$file))
+    log_appender(appender_file(log_path))
     
     # --------------------------------------------------------
     # Registra mensagem de nível INFO

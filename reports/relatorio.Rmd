@@ -1,0 +1,106 @@
+---
+title: ""
+author: ""
+date: ""
+output:
+  html_document:
+    toc: true
+    number_sections: true
+  pdf_document:
+    toc: false
+    number_sections: true
+fontsize: 12pt
+geometry: margin=2.5cm
+---
+
+```{r, echo=FALSE, results='asis'}
+if (knitr::is_latex_output()) {
+
+  cat("
+\\thispagestyle{empty}
+
+\\begin{center}
+
+\\vspace*{2cm}
+
+{\\Large \\textbf{ANÁLISE DE INDICADORES SOCIOECONÔMICOS DO BRASIL - API IBGE}}
+
+\\vspace{0.5cm}
+
+{\\large Carlos da Costa}
+
+\\vspace{0.5cm}
+
+{\\large \\today}
+
+\\vspace{2cm}
+
+\\includegraphics[width=0.7\\textwidth]{ibge.jpg}
+
+\\vfill
+
+Recife - PE
+
+\\end{center}
+
+\\newpage
+")
+
+} else {
+
+  cat("
+<div style='text-align:center; margin-top:100px;'>
+
+<h1>ANÁLISE DE INDICADORES SOCIOECONÔMICOS DO BRASIL - API IBGE</h1>
+
+<h3>Carlos da Costa</h3>
+
+<h4>", Sys.Date(), "</h4>
+
+<br><br>
+
+<img src='ibge.jpg' width='50%'>
+
+<br><br><br>
+
+<p>Recife - PE</p>
+
+</div>
+
+<div style='page-break-after: always;'></div>
+")
+
+}
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE
+)  
+
+# --------------------------------------------------------
+# Pacotes utilizados
+# --------------------------------------------------------
+library(yaml)
+library(here)
+
+# --------------------------------------------------------
+# Leitura de arquivos de configuração
+# --------------------------------------------------------
+# paths.yaml: define caminhos de arquivos e diretórios
+# config_env.yaml: parâmetros de ambiente (retry, etc.)
+# suppressWarnings evita poluição de logs por warnings não críticos
+# --------------------------------------------------------
+config_paths <- suppressWarnings(
+  yaml::read_yaml(here("config_yaml", "paths.yaml"))
+)
+config_retry <- suppressWarnings(
+  yaml::read_yaml(here("config_yaml", "config_env.yaml"))
+)
+
+source(here("main.R"))
+
+result <- main()
+```
