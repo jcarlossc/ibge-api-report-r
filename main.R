@@ -72,7 +72,7 @@ setup_logger()
 main <- function(){
   
   # Log de início do pipeline
-  log_info("##### Início do pipeline - main() #####")
+  log_info(enc2utf8("##### Início do pipeline - main() #####"))
   
   tryCatch({
 
@@ -134,7 +134,7 @@ main <- function(){
       processed_metric_series = processed_metric_series
     )
     
-    log_info("##### Término do pipeline - main() #####")
+    log_info(enc2utf8("##### Término do pipeline - main() #####"))
     
     return(results_list)
     
@@ -144,4 +144,3 @@ main <- function(){
     return(NULL)
   })
 }
-main()

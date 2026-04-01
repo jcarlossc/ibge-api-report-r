@@ -120,9 +120,9 @@ get_statistics <- function(tibble_files) {
         ano_min = ano_min
       ),
       formatado = list(
-        media_format = round(media / 1e6),
-        mediana_format = round(mediana / 1e6),
-        desvio_padrao_format = round(desvio_padrao / 1e6),
+        media_format = round(media / 1e6, 2),
+        mediana_format = round(mediana / 1e6, 2),
+        desvio_padrao_format = round(desvio_padrao / 1e6, 2),
         
         crescimento_total_percentual = paste0(
           round(crescimento_total, 2), "%"
