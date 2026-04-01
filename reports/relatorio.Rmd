@@ -3,9 +3,6 @@ title: ""
 author: ""
 date: ""
 output:
-  html_document:
-    toc: true
-    number_sections: true
   pdf_document:
     toc: false
     number_sections: true
@@ -13,65 +10,45 @@ fontsize: 12pt
 geometry: margin=2.5cm
 ---
 
-```{r, echo=FALSE, results='asis'}
-if (knitr::is_latex_output()) {
+\thispagestyle{empty}
 
-  cat("
-\\thispagestyle{empty}
+\begin{center}
 
-\\begin{center}
+\vspace*{2cm}
 
-\\vspace*{2cm}
+{\Large \textbf{ANÁLISE DE INDICADORES SOCIOECONÔMICOS DO BRASIL - API IBGE}}
 
-{\\Large \\textbf{ANÁLISE DE INDICADORES SOCIOECONÔMICOS DO BRASIL - API IBGE}}
+\vspace{0.5cm}
 
-\\vspace{0.5cm}
+{\large Carlos da Costa}
 
-{\\large Carlos da Costa}
+\vspace{0.5cm}
 
-\\vspace{0.5cm}
+{\large \today}
 
-{\\large \\today}
+\vspace{2cm}
 
-\\vspace{2cm}
+\includegraphics[width=0.7\textwidth]{ibge.jpg}
 
-\\includegraphics[width=0.7\\textwidth]{ibge.jpg}
-
-\\vfill
+\vfill
 
 Recife - PE
 
-\\end{center}
+\end{center}
 
-\\newpage
-")
+\newpage
 
-} else {
+\tableofcontents
 
-  cat("
-<div style='text-align:center; margin-top:100px;'>
+\newpage
 
-<h1>ANÁLISE DE INDICADORES SOCIOECONÔMICOS DO BRASIL - API IBGE</h1>
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{center}
 
-<h3>Carlos da Costa</h3>
+\end{center}
 
-<h4>", Sys.Date(), "</h4>
-
-<br><br>
-
-<img src='ibge.jpg' width='50%'>
-
-<br><br><br>
-
-<p>Recife - PE</p>
-
-</div>
-
-<div style='page-break-after: always;'></div>
-")
-
-}
-```
+\newpage
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
@@ -104,3 +81,157 @@ source(here("main.R"))
 
 result <- main()
 ```
+
+\newpage
+
+# Introdução
+
+O acesso a dados econômicos confiáveis e atualizados é fundamental para análises estatísticas, tomada de decisão e desenvolvimento de soluções orientadas a dados. Nesse contexto, o Instituto Brasileiro de Geografia e Estatística (IBGE) disponibiliza diversas APIs públicas que permitem a consulta automatizada de informações socioeconômicas de forma estruturada e acessível.
+
+Este projeto utiliza a API de países do IBGE, especificamente o endpoint de indicadores econômicos, disponível em:
+https://servicodados.ibge.gov.br/api/v1/paises/BR/indicadores
+
+Essa API fornece dados em formato JSON contendo séries históricas de indicadores relevantes, permitindo análises temporais, comparações e visualizações. Entre os principais aspectos da API, destacam-se:
+
+* Acesso aberto, sem necessidade de autenticação
+
+* Estrutura padronizada para consumo em aplicações
+
+* Disponibilização de indicadores econômicos e sociais do Brasil.
+
+* Possibilidade de filtragem por indicadores e períodos
+
+Segundo a documentação oficial, a API integra um conjunto de serviços do IBGE voltados à disseminação de dados estatísticos e geográficos, facilitando a interoperabilidade e o uso em aplicações analíticas e científicas .
+
+Neste relatório, será realizada a extração, tratamento e análise exploratória de indicadores econômicos do Brasil, com o objetivo de demonstrar como utilizar dados públicos em projetos de ciência de dados utilizando a linguagem R.
+
+\newpage
+
+# Indicadores Socioeconômicos
+
+## Indicador Turístico 1995 - 2019  
+
+```{r, fig.width=10, fig.height=3}
+result$processed_graphic_series$turistas
+
+media_form_turista <- result$processed_metric_series$turistas$formatado$media_format
+mediana_form_turista <- result$processed_metric_series$turistas$formatado$mediana_format
+dp_form_turista <- result$processed_metric_series$turistas$formatado$desvio_padrao_format
+valor_min_form_turista <- format(result$processed_metric_series$turistas$resumo$minimo, scientific = FALSE, big.mark = ".")
+valor_max_form_turista <- format(result$processed_metric_series$turistas$resumo$maximo, scientific = FALSE, big.mark = ".")
+
+percentual_crescimento_turista <- result$processed_metric_series$turistas$crescimento$crescimento_total_percentual
+percentual_cresc_form_turista <- round(percentual_crescimento_turista, 2)
+
+carg_percentual_turista <- result$processed_metric_series$turistas$crescimento$cagr_percentual
+carg_perc_form_turista <- round(carg_percentual_turista, 2)
+
+total_crescimento_turista <- result$processed_metric_series$turistas$resumo$maximo - result$processed_metric_series$turistas$resumo$minimo
+
+crescimento_total_turista <- format(total_crescimento_turista, scientific = FALSE, big.mark = ".")
+
+media_turista <- format(result$processed_metric_series$turistas$resumo$media, scientific = FALSE, big.mark = ".")
+mediana_turista <- format(result$processed_metric_series$turistas$resumo$mediana, scientific = FALSE, big.mark = ".")
+min_turista <- format(result$processed_metric_series$turistas$resumo$minimo, scientific = FALSE, big.mark = ".")
+max_turista <- format(result$processed_metric_series$turistas$resumo$maximo, scientific = FALSE, big.mark = ".")
+dp_turista <- format(result$processed_metric_series$turistas$resumo$desvio_padrao, scientific = FALSE, big.mark = ".")
+
+```
+
+Entre 1995 e 2019, a série apresenta uma média aproximada de `r media_form_turista` milhões e mediana de cerca de `r mediana_form_turista` milhões, indicando leve concentração em torno de valores intermediários. O mínimo observado foi de `r valor_min_form_turista` (1995) e o máximo de `r valor_max_form_turista` (2018), evidenciando uma amplitude significativa ao longo do período. O desvio padrão, em torno de `r dp_form_turista` milhão, revela uma variabilidade moderada dos dados.
+
+No geral, houve um crescimento total de aproximadamente `r crescimento_total_turista`, com crescimento total percentual próximo de `r percentual_cresc_form_turista`%. A variação absoluta entre o primeiro e o último ano confirma esse avanço expressivo. O CAGR (taxa de crescimento anual composta) foi de cerca de `r carg_perc_form_turista`% ao ano, equivalente a um CAGR percentual consistente, indicando crescimento sustentado no longo prazo.
+
+Ao longo dos anos, a variação anual mostrou oscilações, com períodos de queda (como entre 2000–2002 e 2008–2009) e retomadas posteriores. Ainda assim, o crescimento anual médio manteve tendência positiva, e o crescimento percentual ano a ano evidencia um comportamento cíclico, porém com trajetória geral de expansão.
+
+| Métricas | Valores em milhões |
+|----------|------:|
+| Média Aritmética | `r media_turista` | 
+| Mediana | `r mediana_turista` | 
+| Mínimo | `r min_turista` |
+| Máxima | `r max_turista` |  
+| Desvio Padrão | `r dp_turista` |
+| Crescimento Total | `r crescimento_total_turista` |
+| Crescimento Percentual | `r percentual_cresc_form_turista`% |
+| CARG * | `r carg_perc_form_turista`% |
+*Taxa de Crescimento Anual Composta
+
+\newpage
+
+## Indicador de Exportações 1990 - 2023 
+
+```{r, fig.width=10, fig.height=3}
+result$processed_graphic_series$exportacao
+
+media_form_exportacao <- result$processed_metric_series$exportacao$formatado$media_format
+mediana_form_exportacao <- result$processed_metric_series$exportacao$formatado$mediana_format
+dp_form_exportacao <- result$processed_metric_series$exportacao$formatado$desvio_padrao_format
+valor_min_form_exportacao <- format(result$processed_metric_series$exportacao$resumo$minimo, scientific = FALSE, big.mark = ".")
+valor_max_form_exportacao <- format(result$processed_metric_series$exportacao$resumo$maximo, scientific = FALSE, big.mark = ".")
+
+percentual_crescimento_exportacao <- result$processed_metric_series$exportacao$crescimento$crescimento_total_percentual
+percentual_cresc_form_exportacao <- round(percentual_crescimento_exportacao, 2)
+
+carg_percentual_exportacao <- result$processed_metric_series$exportacao$crescimento$cagr_percentual
+carg_perc_form_exportacao <- round(carg_percentual_exportacao, 2)
+
+total_crescimento_exportacao <- result$processed_metric_series$exportacao$resumo$maximo - result$processed_metric_series$exportacao$resumo$minimo
+
+crescimento_total_exportacao <- format(total_crescimento_exportacao, scientific = FALSE, big.mark = ".")
+
+media_exportacao <- format(result$processed_metric_series$exportacao$resumo$media, scientific = FALSE, big.mark = ".")
+mediana_exportacao <- format(result$processed_metric_series$exportacao$resumo$mediana, scientific = FALSE, big.mark = ".")
+min_exportacao <- format(result$processed_metric_series$exportacao$resumo$minimo, scientific = FALSE, big.mark = ".")
+max_exportacao <- format(result$processed_metric_series$texportacao$resumo$maximo, scientific = FALSE, big.mark = ".")
+dp_exportacao <- format(result$processed_metric_series$exportacao$resumo$desvio_padrao, scientific = FALSE, big.mark = ".")
+
+```
+
+Entre 1990 e 2023, as exportações apresentaram valor mínimo de aproximadamente `r valor_min_form_exportacao` bilhões e valor máximo de cerca de `r valor_max_form_exportacao` bilhões, resultando em um crescimento total absoluto de aproximadamente `r crescimento_total_exportacao` bilhões. Esse avanço corresponde a um crescimento total percentual próximo de `r percentual_cresc_form_exportacao`% ao longo do período.
+
+A média dos valores foi da ordem de `r media_form_exportacao` bilhões, enquanto a mediana situou-se próxima de `r mediana_form_exportacao` bilhões, indicando uma distribuição relativamente equilibrada, porém com tendência de crescimento ao longo do tempo. O desvio padrão, estimado em cerca de `r dp_form_exportacao` bilhões, revela uma dispersão significativa, refletindo variações expressivas entre os anos.
+
+Em termos de dinâmica de crescimento, a taxa composta anual (CAGR) foi de aproximadamente `r carg_perc_form_exportacao`% ao ano, o que corresponde a um CAGR percentual consistente para um horizonte de longo prazo. Já a variação absoluta anual apresentou oscilações relevantes, com períodos de forte expansão — como entre 2003 e 2008 — e retrações pontuais, como em 2009.
+
+De forma geral, os dados indicam uma trajetória de crescimento robusto no longo prazo, ainda que marcada por flutuações no curto prazo.
+
+| Métricas | Valores em milhões |
+|----------|------:|
+| Média Aritmética | `r media_exportacao` | 
+| Mediana | `r mediana_exportacao` | 
+| Mínimo | `r min_exportacao` |
+| Máxima | `r max_exportacao` |  
+| Desvio Padrão | `r dp_exportacao` |
+| Crescimento Total | `r crescimento_total_exportacao` |
+| Crescimento Percentual | `r percentual_cresc_form_exportacao`% |
+| CARG * | `r carg_perc_form_exportacao`% |
+*Taxa de Crescimento Anual Composta
+
+\newpage
+
+## Indicador de Importações 1995 - 2019 
+
+\newpage
+
+## Indicador de PIB 1995 - 2019 
+
+\newpage
+
+## Indicador de População 1995 - 2019  
+
+\newpage
+
+# Conclusão
+
+A utilização da API de indicadores econômicos do IBGE demonstrou-se uma abordagem eficiente e escalável para obtenção de dados públicos confiáveis, permitindo a construção de análises reprodutíveis e automatizadas. Ao longo deste projeto, foi possível realizar a extração, transformação e exploração de dados econômicos do Brasil de forma estruturada, evidenciando o potencial das APIs como fonte primária em projetos de ciência de dados.
+
+Os resultados obtidos reforçam a importância do uso de dados oficiais para análises consistentes, além de destacar a flexibilidade da linguagem R no processamento e visualização de informações. A integração entre coleta automatizada e análise estatística possibilita maior agilidade na geração de insights e na construção de soluções orientadas a dados.
+
+Como perspectivas futuras, o projeto pode ser expandido para incluir:
+
+Integração com múltiplos indicadores simultaneamente
+Criação de dashboards interativos com Shiny
+Armazenamento dos dados em banco relacional para análises históricas
+Implementação de pipelines automatizados para atualização contínua
+
+Dessa forma, este trabalho não apenas apresenta uma aplicação prática do consumo de APIs públicas, mas também estabelece uma base sólida para evoluções em projetos de engenharia e análise de dados.
