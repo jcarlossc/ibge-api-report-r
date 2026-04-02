@@ -118,19 +118,6 @@ get_statistics <- function(tibble_files) {
       extremos = list(
         ano_max = ano_max,
         ano_min = ano_min
-      ),
-      formatado = list(
-        media_format = round(media / 1e6, 2),
-        mediana_format = round(mediana / 1e6, 2),
-        desvio_padrao_format = round(desvio_padrao / 1e6, 2),
-        
-        crescimento_total_percentual = paste0(
-          round(crescimento_total, 2), "%"
-        ),
-        
-        cagr_percentual = paste0(
-          round(cagr, 2), "%"
-        )
       )
     )
     
