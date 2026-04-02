@@ -144,3 +144,4 @@ main <- function(){
     return(NULL)
   })
 }
+main()

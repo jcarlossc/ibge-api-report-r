@@ -114,46 +114,45 @@ Neste relatório, será realizada a extração, tratamento e análise explorató
 ```{r, fig.width=10, fig.height=3}
 result$processed_graphic_series$turistas
 
-media_form_turista <- result$processed_metric_series$turistas$formatado$media_format
-mediana_form_turista <- result$processed_metric_series$turistas$formatado$mediana_format
-dp_form_turista <- result$processed_metric_series$turistas$formatado$desvio_padrao_format
-valor_min_form_turista <- format(result$processed_metric_series$turistas$resumo$minimo, scientific = FALSE, big.mark = ".")
-valor_max_form_turista <- format(result$processed_metric_series$turistas$resumo$maximo, scientific = FALSE, big.mark = ".")
-
+media_turista <- result$processed_metric_series$turistas$resumo$media
+mediana_turista <- result$processed_metric_series$turistas$resumo$mediana
+dp_turista <- result$processed_metric_series$turistas$resumo$desvio_padrao
+valor_min_turista <- result$processed_metric_series$turistas$resumo$minimo
+valor_max_turista <- result$processed_metric_series$turistas$resumo$maximo
 percentual_crescimento_turista <- result$processed_metric_series$turistas$crescimento$crescimento_total_percentual
-percentual_cresc_form_turista <- round(percentual_crescimento_turista, 2)
-
 carg_percentual_turista <- result$processed_metric_series$turistas$crescimento$cagr_percentual
-carg_perc_form_turista <- round(carg_percentual_turista, 2)
+total_crescimento_turista <- valor_max_turista - valor_min_turista
 
-total_crescimento_turista <- result$processed_metric_series$turistas$resumo$maximo - result$processed_metric_series$turistas$resumo$minimo
+media_turista_format_arred <- round(media_turista / 1e6, 2)
+mediana_turista_format_arred <- round(mediana_turista / 1e6, 2)
+dp_turista_format_arred <- round(dp_turista / 1e6, 2)
+percentual_cresc_turista_arred <- round(percentual_crescimento_turista, 2)
+carg_percentual_turista_arred <- round(carg_percentual_turista, 2)
 
-crescimento_total_turista <- format(total_crescimento_turista, scientific = FALSE, big.mark = ".")
-
-media_turista <- format(result$processed_metric_series$turistas$resumo$media, scientific = FALSE, big.mark = ".")
-mediana_turista <- format(result$processed_metric_series$turistas$resumo$mediana, scientific = FALSE, big.mark = ".")
-min_turista <- format(result$processed_metric_series$turistas$resumo$minimo, scientific = FALSE, big.mark = ".")
-max_turista <- format(result$processed_metric_series$turistas$resumo$maximo, scientific = FALSE, big.mark = ".")
-dp_turista <- format(result$processed_metric_series$turistas$resumo$desvio_padrao, scientific = FALSE, big.mark = ".")
-
+media_turista_format <- format(media_turista, scientific = FALSE, big.mark = ".")
+mediana_turista_format <- format(mediana_turista, scientific = FALSE, big.mark = ".")
+dp_turista_format <- format(dp_turista, scientific = FALSE, big.mark = ".")
+valor_min_turista_format <- format(valor_min_turista, scientific = FALSE, big.mark = ".")
+valor_max_turista_format <- format(valor_max_turista, scientific = FALSE, big.mark = ".")
+total_crescimento_turista_format <- format(total_crescimento_turista, scientific = FALSE, big.mark = ".")
 ```
 
-Entre 1995 e 2019, a série apresenta uma média aproximada de `r media_form_turista` milhões e mediana de cerca de `r mediana_form_turista` milhões, indicando leve concentração em torno de valores intermediários. O mínimo observado foi de `r valor_min_form_turista` (1995) e o máximo de `r valor_max_form_turista` (2018), evidenciando uma amplitude significativa ao longo do período. O desvio padrão, em torno de `r dp_form_turista` milhão, revela uma variabilidade moderada dos dados.
+Entre 1995 e 2019, a série apresenta uma média aproximada de `r media_turista_format_arred` milhões e mediana de cerca de `r mediana_turista_format_arred` milhões, indicando leve concentração em torno de valores intermediários. O mínimo observado foi de `r valor_min_turista_format` (1995) e o máximo de `r valor_max_turista_format` (2018), evidenciando uma amplitude significativa ao longo do período. O desvio padrão, em torno de `r  dp_turista_format_arred` milhão, revela uma variabilidade moderada dos dados.
 
-No geral, houve um crescimento total de aproximadamente `r crescimento_total_turista`, com crescimento total percentual próximo de `r percentual_cresc_form_turista`%. A variação absoluta entre o primeiro e o último ano confirma esse avanço expressivo. O CAGR (taxa de crescimento anual composta) foi de cerca de `r carg_perc_form_turista`% ao ano, equivalente a um CAGR percentual consistente, indicando crescimento sustentado no longo prazo.
+No geral, houve um crescimento total de aproximadamente `r total_crescimento_turista_format`, com crescimento total percentual próximo de `r percentual_cresc_turista_arred`%. A variação absoluta entre o primeiro e o último ano confirma esse avanço expressivo. O CAGR (taxa de crescimento anual composta) foi de cerca de `r carg_percentual_turista_arred`% ao ano, equivalente a um CAGR percentual consistente, indicando crescimento sustentado no longo prazo.
 
 Ao longo dos anos, a variação anual mostrou oscilações, com períodos de queda (como entre 2000–2002 e 2008–2009) e retomadas posteriores. Ainda assim, o crescimento anual médio manteve tendência positiva, e o crescimento percentual ano a ano evidencia um comportamento cíclico, porém com trajetória geral de expansão.
 
 | Métricas | Valores em milhões |
 |----------|------:|
-| Média Aritmética | `r media_turista` | 
-| Mediana | `r mediana_turista` | 
-| Mínimo | `r min_turista` |
-| Máxima | `r max_turista` |  
-| Desvio Padrão | `r dp_turista` |
-| Crescimento Total | `r crescimento_total_turista` |
-| Crescimento Percentual | `r percentual_cresc_form_turista`% |
-| CARG * | `r carg_perc_form_turista`% |
+| Média Aritmética | `r media_turista_format` | 
+| Mediana | `r mediana_turista_format` | 
+| Mínimo | `r valor_min_turista_format` |
+| Máxima | `r valor_max_turista_format` |  
+| Desvio Padrão | `r dp_turista_format` |
+| Crescimento Total | `r total_crescimento_turista_format` |
+| Crescimento Percentual | `r percentual_cresc_turista_arred`% |
+| CARG * | `r carg_percentual_turista_arred`% |
 *Taxa de Crescimento Anual Composta
 
 \newpage
@@ -161,50 +160,49 @@ Ao longo dos anos, a variação anual mostrou oscilações, com períodos de que
 ## Indicador de Exportações 1990 - 2023 
 
 ```{r, fig.width=10, fig.height=3}
-result$processed_graphic_series$exportacao
+result$processed_graphic_series$turistas
 
-media_form_exportacao <- result$processed_metric_series$exportacao$formatado$media_format
-mediana_form_exportacao <- result$processed_metric_series$exportacao$formatado$mediana_format
-dp_form_exportacao <- result$processed_metric_series$exportacao$formatado$desvio_padrao_format
-valor_min_form_exportacao <- format(result$processed_metric_series$exportacao$resumo$minimo, scientific = FALSE, big.mark = ".")
-valor_max_form_exportacao <- format(result$processed_metric_series$exportacao$resumo$maximo, scientific = FALSE, big.mark = ".")
-
+media_exportacao <- result$processed_metric_series$exportacao$resumo$media
+mediana_exportacao <- result$processed_metric_series$exportacao$resumo$mediana
+dp_exportacao <- result$processed_metric_series$exportacao$resumo$desvio_padrao
+valor_min_exportacao <- result$processed_metric_series$exportacao$resumo$minimo
+valor_max_exportacao <- result$processed_metric_series$exportacao$resumo$maximo
 percentual_crescimento_exportacao <- result$processed_metric_series$exportacao$crescimento$crescimento_total_percentual
-percentual_cresc_form_exportacao <- round(percentual_crescimento_exportacao, 2)
-
 carg_percentual_exportacao <- result$processed_metric_series$exportacao$crescimento$cagr_percentual
-carg_perc_form_exportacao <- round(carg_percentual_exportacao, 2)
+total_crescimento_exportacao <- valor_max_exportacao - valor_min_exportacao
 
-total_crescimento_exportacao <- result$processed_metric_series$exportacao$resumo$maximo - result$processed_metric_series$exportacao$resumo$minimo
+media_exportacao_format_arred <- round(media_exportacao / 1e9, 2)
+mediana_exportacao_format_arred <- round(mediana_exportacao / 1e9, 2)
+dp_exportacao_format_arred <- round(dp_exportacao / 1e9, 2)
+percentual_cresc_exportacao_arred <- round(percentual_crescimento_exportacao, 2)
+carg_percentual_exportacao_arred <- round(carg_percentual_exportacao, 2)
 
-crescimento_total_exportacao <- format(total_crescimento_exportacao, scientific = FALSE, big.mark = ".")
-
-media_exportacao <- format(result$processed_metric_series$exportacao$resumo$media, scientific = FALSE, big.mark = ".")
-mediana_exportacao <- format(result$processed_metric_series$exportacao$resumo$mediana, scientific = FALSE, big.mark = ".")
-min_exportacao <- format(result$processed_metric_series$exportacao$resumo$minimo, scientific = FALSE, big.mark = ".")
-max_exportacao <- format(result$processed_metric_series$texportacao$resumo$maximo, scientific = FALSE, big.mark = ".")
-dp_exportacao <- format(result$processed_metric_series$exportacao$resumo$desvio_padrao, scientific = FALSE, big.mark = ".")
-
+media_exportacao_format <- format(media_exportacao, scientific = FALSE, big.mark = ".")
+mediana_exportacao_format <- format(mediana_exportacao, scientific = FALSE, big.mark = ".")
+dp_exportacao_format <- format(dp_exportacao, scientific = FALSE, big.mark = ".")
+valor_min_exportacao_format <- format(valor_min_exportacao, scientific = FALSE, big.mark = ".")
+valor_max_exportacao_format <- format(valor_max_exportacao, scientific = FALSE, big.mark = ".")
+total_crescimento_exportacao_format <- format(total_crescimento_exportacao, scientific = FALSE, big.mark = ".")
 ```
 
-Entre 1990 e 2023, as exportações apresentaram valor mínimo de aproximadamente `r valor_min_form_exportacao` bilhões e valor máximo de cerca de `r valor_max_form_exportacao` bilhões, resultando em um crescimento total absoluto de aproximadamente `r crescimento_total_exportacao` bilhões. Esse avanço corresponde a um crescimento total percentual próximo de `r percentual_cresc_form_exportacao`% ao longo do período.
+Entre 1990 e 2023, as exportações apresentaram valor mínimo de aproximadamente `r  valor_min_exportacao_format` bilhões e valor máximo de cerca de `r valor_max_exportacao_format` bilhões, resultando em um crescimento total absoluto de aproximadamente `r total_crescimento_exportacao_format` bilhões. Esse avanço corresponde a um crescimento total percentual próximo de `r percentual_cresc_exportacao_arred`% ao longo do período.
 
-A média dos valores foi da ordem de `r media_form_exportacao` bilhões, enquanto a mediana situou-se próxima de `r mediana_form_exportacao` bilhões, indicando uma distribuição relativamente equilibrada, porém com tendência de crescimento ao longo do tempo. O desvio padrão, estimado em cerca de `r dp_form_exportacao` bilhões, revela uma dispersão significativa, refletindo variações expressivas entre os anos.
+A média dos valores foi da ordem de `r media_exportacao_format_arred` bilhões, enquanto a mediana situou-se próxima de `r mediana_exportacao_format_arred` bilhões, indicando uma distribuição relativamente equilibrada, porém com tendência de crescimento ao longo do tempo. O desvio padrão, estimado em cerca de `r dp_exportacao_format_arred` bilhões, revela uma dispersão significativa, refletindo variações expressivas entre os anos.
 
-Em termos de dinâmica de crescimento, a taxa composta anual (CAGR) foi de aproximadamente `r carg_perc_form_exportacao`% ao ano, o que corresponde a um CAGR percentual consistente para um horizonte de longo prazo. Já a variação absoluta anual apresentou oscilações relevantes, com períodos de forte expansão — como entre 2003 e 2008 — e retrações pontuais, como em 2009.
+Em termos de dinâmica de crescimento, a taxa composta anual (CAGR) foi de aproximadamente `r carg_percentual_exportacao_arred`% ao ano, o que corresponde a um CAGR percentual consistente para um horizonte de longo prazo. Já a variação absoluta anual apresentou oscilações relevantes, com períodos de forte expansão — como entre 2003 e 2008 — e retrações pontuais, como em 2009.
 
 De forma geral, os dados indicam uma trajetória de crescimento robusto no longo prazo, ainda que marcada por flutuações no curto prazo.
 
-| Métricas | Valores em milhões |
+| Métricas | Valores em bilhões |
 |----------|------:|
-| Média Aritmética | `r media_exportacao` | 
-| Mediana | `r mediana_exportacao` | 
-| Mínimo | `r min_exportacao` |
-| Máxima | `r max_exportacao` |  
-| Desvio Padrão | `r dp_exportacao` |
-| Crescimento Total | `r crescimento_total_exportacao` |
-| Crescimento Percentual | `r percentual_cresc_form_exportacao`% |
-| CARG * | `r carg_perc_form_exportacao`% |
+| Média Aritmética | `r media_exportacao_format` | 
+| Mediana | `r mediana_exportacao_format` | 
+| Mínimo | `r valor_min_exportacao_format` |
+| Máxima | `r valor_max_exportacao_format` |  
+| Desvio Padrão | `r dp_exportacao_format` |
+| Crescimento Total | `r total_crescimento_exportacao_format` |
+| Crescimento Percentual | `r percentual_cresc_exportacao_arred`% |
+| CARG * | `r carg_percentual_exportacao_arred`% |
 *Taxa de Crescimento Anual Composta
 
 \newpage
