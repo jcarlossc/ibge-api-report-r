@@ -135,7 +135,7 @@ main <- function(){
     )
     
     log_info(enc2utf8("##### Término do pipeline - main() #####"))
-    
+
     return(results_list)
     
   }, error = function(e) {
@@ -144,4 +144,4 @@ main <- function(){
     return(NULL)
   })
 }
-main()
+
