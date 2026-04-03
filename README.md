@@ -16,6 +16,7 @@ Este projeto implementa um pipeline completo para:
 * Preparação de dados para visualização
 * Execução resiliente com retry automático
 * Logging estruturado para monitoramento
+* Geração de Relatório
 
 ## 📌 Arquitetura do Projeto
 ```
@@ -79,6 +80,7 @@ ibge-api-report-r/
 6. Cálculo de métricas estatísticas
 7. Preparação para visualização
 8. Retorno estruturado dos resultados
+9. Geração de Relatório
 
 ## 📌 Indicadores Coletados
 * Turismo (chegada de turistas)
