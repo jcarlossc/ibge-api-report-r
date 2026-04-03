@@ -36,7 +36,7 @@ get_statistics <- function(tibble_files) {
   # ---------------------------------------------------------
   # Início do processamento estatístico
   # ---------------------------------------------------------
-  log_info("Iniciando cálculo de estatístico")
+  log_info(glue("Iniciando cálculo estatístico"))
   
   tryCatch({
   

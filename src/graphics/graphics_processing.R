@@ -46,7 +46,9 @@ get_graphics <- function(tibble_files) {
     # --------------------------------------------------------
     # Início do processamento gráfico
     # --------------------------------------------------------
-    log_info("Iniciando geração do gráfico")
+    log_info(glue(
+      "Iniciando geração do gráfico ** {tibble_files$metadata_tibble$titulo} **"
+    ))
     
     # ---------------------------------------------------------
     # 2. Validação de entrada
