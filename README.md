@@ -1,6 +1,6 @@
 # 📌 IBGE Data Pipeline
 
-Pipeline de ingestão, processamento e análise de dados da API do IBGE, desenvolvido em R com foco em boas práticas de 
+Pipeline de ingestão, processamento, análise de dados e geração de relatório da API do IBGE, desenvolvido em R com foco em boas práticas de 
 engenharia de dados, modularização e resiliência.
 
 ## 📌 Relatório R Markdown
