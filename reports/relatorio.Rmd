@@ -77,8 +77,14 @@ config_retry <- suppressWarnings(
   yaml::read_yaml(here("config_yaml", "config_env.yaml"))
 )
 
+# --------------------------------------------------------
+# Importe do arquivo main
+# --------------------------------------------------------
 source(here("main.R"))
 
+# --------------------------------------------------------
+# Retorno do arquivo main
+# --------------------------------------------------------
 result <- main()
 ```
 
@@ -112,8 +118,14 @@ Neste relatório, será realizada a extração, tratamento e análise explorató
 ## Indicador Turístico 1995 - 2019  
 
 ```{r, fig.width=10, fig.height=3}
+# --------------------------------------------------------
+# Gráfico turistas
+# --------------------------------------------------------
 result$processed_graphic_series$turistas
 
+# --------------------------------------------------------
+# Variáveis 'limpas'
+# --------------------------------------------------------
 media_turista <- result$processed_metric_series$turistas$resumo$media
 mediana_turista <- result$processed_metric_series$turistas$resumo$mediana
 dp_turista <- result$processed_metric_series$turistas$resumo$desvio_padrao
@@ -123,12 +135,21 @@ percentual_crescimento_turista <- result$processed_metric_series$turistas$cresci
 carg_percentual_turista <- result$processed_metric_series$turistas$crescimento$cagr_percentual
 total_crescimento_turista <- valor_max_turista - valor_min_turista
 
-media_turista_format_arred <- round(media_turista / 1e6, 2)
-mediana_turista_format_arred <- round(mediana_turista / 1e6, 2)
-dp_turista_format_arred <- round(dp_turista / 1e6, 2)
+# --------------------------------------------------------
+# Variáveis arredondadas
+# --------------------------------------------------------
+media_turista_format_arred <- round(media_turista / 1e6, 3)
+mediana_turista_format_arred <- round(mediana_turista / 1e6, 3)
+dp_turista_format_arred <- round(dp_turista / 1e6, 3)
+valor_max_turista_arred <- round(valor_max_turista / 1e6, 3)
+valor_min_turista_arred <- round(valor_min_turista / 1e6, 3)
+total_crescimento_turista_arred <- round(total_crescimento_turista / 1e6, 3)
 percentual_cresc_turista_arred <- round(percentual_crescimento_turista, 2)
 carg_percentual_turista_arred <- round(carg_percentual_turista, 2)
 
+# --------------------------------------------------------
+# Variáveis formatadas
+# --------------------------------------------------------
 media_turista_format <- format(media_turista, scientific = FALSE, big.mark = ".")
 mediana_turista_format <- format(mediana_turista, scientific = FALSE, big.mark = ".")
 dp_turista_format <- format(dp_turista, scientific = FALSE, big.mark = ".")
@@ -137,9 +158,9 @@ valor_max_turista_format <- format(valor_max_turista, scientific = FALSE, big.ma
 total_crescimento_turista_format <- format(total_crescimento_turista, scientific = FALSE, big.mark = ".")
 ```
 
-Entre 1995 e 2019, a série apresenta uma média aproximada de `r media_turista_format_arred` milhões e mediana de cerca de `r mediana_turista_format_arred` milhões, indicando leve concentração em torno de valores intermediários. O mínimo observado foi de `r valor_min_turista_format` (1995) e o máximo de `r valor_max_turista_format` (2018), evidenciando uma amplitude significativa ao longo do período. O desvio padrão, em torno de `r  dp_turista_format_arred` milhão, revela uma variabilidade moderada dos dados.
+Entre 1995 e 2019, a série apresenta uma média aproximada de `r media_turista_format_arred` milhões e mediana de cerca de `r mediana_turista_format_arred` milhões, indicando leve concentração em torno de valores intermediários. O mínimo observado foi de `r valor_min_turista_arred` milhões em 1995 e o máximo de `r valor_max_turista_arred` milhões em 2018, evidenciando uma amplitude significativa ao longo do período. O desvio padrão, em torno de `r  dp_turista_format_arred` milhão, revela uma variabilidade moderada dos dados.
 
-No geral, houve um crescimento total de aproximadamente `r total_crescimento_turista_format`, com crescimento total percentual próximo de `r percentual_cresc_turista_arred`%. A variação absoluta entre o primeiro e o último ano confirma esse avanço expressivo. O CAGR (taxa de crescimento anual composta) foi de cerca de `r carg_percentual_turista_arred`% ao ano, equivalente a um CAGR percentual consistente, indicando crescimento sustentado no longo prazo.
+No geral, houve um crescimento total de aproximadamente `r total_crescimento_turista_arred` milhões, com crescimento total percentual próximo de `r percentual_cresc_turista_arred`%. A variação absoluta entre o primeiro e o último ano confirma esse avanço expressivo. O CAGR (taxa de crescimento anual composta) foi de cerca de `r carg_percentual_turista_arred`% ao ano, equivalente a um CAGR percentual consistente, indicando crescimento sustentado no longo prazo.
 
 Ao longo dos anos, a variação anual mostrou oscilações, com períodos de queda (como entre 2000–2002 e 2008–2009) e retomadas posteriores. Ainda assim, o crescimento anual médio manteve tendência positiva, e o crescimento percentual ano a ano evidencia um comportamento cíclico, porém com trajetória geral de expansão.
 
@@ -160,8 +181,14 @@ Ao longo dos anos, a variação anual mostrou oscilações, com períodos de que
 ## Indicador de Exportações 1990 - 2023 
 
 ```{r, fig.width=10, fig.height=3}
+# --------------------------------------------------------
+# Gráfico exportação
+# --------------------------------------------------------
 result$processed_graphic_series$exportacao
 
+# --------------------------------------------------------
+# Variáveis 'limpas'
+# --------------------------------------------------------
 media_exportacao <- result$processed_metric_series$exportacao$resumo$media
 mediana_exportacao <- result$processed_metric_series$exportacao$resumo$mediana
 dp_exportacao <- result$processed_metric_series$exportacao$resumo$desvio_padrao
@@ -171,12 +198,21 @@ percentual_crescimento_exportacao <- result$processed_metric_series$exportacao$c
 carg_percentual_exportacao <- result$processed_metric_series$exportacao$crescimento$cagr_percentual
 total_crescimento_exportacao <- valor_max_exportacao - valor_min_exportacao
 
-media_exportacao_format_arred <- round(media_exportacao / 1e9, 2)
-mediana_exportacao_format_arred <- round(mediana_exportacao / 1e9, 2)
-dp_exportacao_format_arred <- round(dp_exportacao / 1e9, 2)
+# --------------------------------------------------------
+# Variáveis arredondadas
+# --------------------------------------------------------
+media_exportacao_format_arred <- round(media_exportacao / 1e9, 3)
+mediana_exportacao_format_arred <- round(mediana_exportacao / 1e9, 3)
+dp_exportacao_format_arred <- round(dp_exportacao / 1e9, 3)
+valor_max_exportacao_arred <- round(valor_max_exportacao / 1e9, 3)
+valor_min_exportacao_arred <- round(valor_min_exportacao / 1e9, 3)
+total_crescimento_exportacao_arred <- round(total_crescimento_exportacao / 1e9, 3)
 percentual_cresc_exportacao_arred <- round(percentual_crescimento_exportacao, 2)
 carg_percentual_exportacao_arred <- round(carg_percentual_exportacao, 2)
 
+# --------------------------------------------------------
+# Variáveis formatadas
+# --------------------------------------------------------
 media_exportacao_format <- format(media_exportacao, scientific = FALSE, big.mark = ".")
 mediana_exportacao_format <- format(mediana_exportacao, scientific = FALSE, big.mark = ".")
 dp_exportacao_format <- format(dp_exportacao, scientific = FALSE, big.mark = ".")
@@ -185,9 +221,9 @@ valor_max_exportacao_format <- format(valor_max_exportacao, scientific = FALSE, 
 total_crescimento_exportacao_format <- format(total_crescimento_exportacao, scientific = FALSE, big.mark = ".")
 ```
 
-Entre 1990 e 2023, as exportações apresentaram valor mínimo de aproximadamente US$`r  valor_min_exportacao_format` bilhões e valor máximo de cerca de `r valor_max_exportacao_format` bilhões, resultando em um crescimento total absoluto de aproximadamente `r total_crescimento_exportacao_format` bilhões. Esse avanço corresponde a um crescimento total percentual próximo de `r percentual_cresc_exportacao_arred`% ao longo do período.
+Entre 1990 e 2023, as exportações apresentaram valor mínimo de aproximadamente US$ `r  valor_min_exportacao_arred` bilhões e valor máximo de cerca de US$ `r valor_max_exportacao_arred` bilhões, resultando em um crescimento total absoluto de aproximadamente US$ `r total_crescimento_exportacao_arred` bilhões. Esse avanço corresponde a um crescimento total percentual próximo de `r percentual_cresc_exportacao_arred`% ao longo do período.
 
-A média dos valores foi da ordem de `r media_exportacao_format_arred` bilhões, enquanto a mediana situou-se próxima de `r mediana_exportacao_format_arred` bilhões, indicando uma distribuição relativamente equilibrada, porém com tendência de crescimento ao longo do tempo. O desvio padrão, estimado em cerca de `r dp_exportacao_format_arred` bilhões, revela uma dispersão significativa, refletindo variações expressivas entre os anos.
+A média dos valores foi da ordem de US$ `r media_exportacao_format_arred` bilhões, enquanto a mediana situou-se próxima de US$ `r mediana_exportacao_format_arred` bilhões, indicando uma distribuição relativamente equilibrada, porém com tendência de crescimento ao longo do tempo. O desvio padrão, estimado em cerca de US$ `r dp_exportacao_format_arred` bilhões, revela uma dispersão significativa, refletindo variações expressivas entre os anos.
 
 Em termos de dinâmica de crescimento, a taxa composta anual (CAGR) foi de aproximadamente `r carg_percentual_exportacao_arred`% ao ano, o que corresponde a um CAGR percentual consistente para um horizonte de longo prazo. Já a variação absoluta anual apresentou oscilações relevantes, com períodos de forte expansão — como entre 2003 e 2008 — e retrações pontuais, como em 2009.
 
@@ -210,8 +246,14 @@ De forma geral, os dados indicam uma trajetória de crescimento robusto no longo
 ## Indicador de Importações 1990 - 2023 
 
 ```{r, fig.width=10, fig.height=3}
+# --------------------------------------------------------
+# Gráfico importações
+# --------------------------------------------------------
 result$processed_graphic_series$importacao
 
+# --------------------------------------------------------
+# Variáveis 'limpas'
+# --------------------------------------------------------
 media_importacao <- result$processed_metric_series$importacao$resumo$media
 mediana_importacao <- result$processed_metric_series$importacao$resumo$mediana
 dp_importacao <- result$processed_metric_series$importacao$resumo$desvio_padrao
@@ -221,12 +263,21 @@ percentual_crescimento_importacao <- result$processed_metric_series$importacao$c
 carg_percentual_importacao <- result$processed_metric_series$importacao$crescimento$cagr_percentual
 total_crescimento_importacao <- valor_max_importacao - valor_min_importacao
 
-media_importacao_format_arred <- round(media_importacao / 1e9, 2)
-mediana_importacao_format_arred <- round(mediana_importacao / 1e9, 2)
-dp_importacao_format_arred <- round(dp_importacao / 1e9, 2)
+# --------------------------------------------------------
+# Variáveis arredondadas
+# --------------------------------------------------------
+media_importacao_format_arred <- round(media_importacao / 1e9, 3)
+mediana_importacao_format_arred <- round(mediana_importacao / 1e9, 3)
+dp_importacao_format_arred <- round(dp_importacao / 1e9, 3)
+valor_max_importacao_arred <- round(valor_max_importacao / 1e9, 3)
+valor_min_importacao_arred <- round(valor_min_importacao / 1e9, 3)
+total_crescimento_importacao_arred <- round(total_crescimento_importacao / 1e9, 3)
 percentual_cresc_importacao_arred <- round(percentual_crescimento_importacao, 2)
 carg_percentual_importacao_arred <- round(carg_percentual_importacao, 2)
 
+# --------------------------------------------------------
+# Variáveis formatadas
+# --------------------------------------------------------
 media_importacao_format <- format(media_importacao, scientific = FALSE, big.mark = ".")
 mediana_importacao_format <- format(mediana_importacao, scientific = FALSE, big.mark = ".")
 dp_importacao_format <- format(dp_importacao, scientific = FALSE, big.mark = ".")
@@ -235,11 +286,11 @@ valor_max_importacao_format <- format(valor_max_importacao, scientific = FALSE, 
 total_crescimento_importacao_format <- format(total_crescimento_importacao, scientific = FALSE, big.mark = ".")
 ```
 
-A série histórica de importações apresenta um comportamento de crescimento relevante ao longo do período analisado. O valor médio das importações foi de aproximadamente US$ `r  media_importacao_format_arred`, enquanto a mediana ficou em torno de `r mediana_importacao_format_arred`, indicando leve assimetria à esquerda, influenciada pelos valores mais baixos no início da série.
+A série histórica de importações apresenta um comportamento de crescimento relevante ao longo do período analisado. O valor médio das importações foi de aproximadamente US$ `r  media_importacao_format_arred` bilhões, enquanto a mediana ficou em torno de US$ `r mediana_importacao_format_arred` bilhões, indicando leve assimetria à esquerda, influenciada pelos valores mais baixos no início da série.
 
-O desvio padrão, próximo de `r dp_importacao_format_arred`, evidencia uma elevada dispersão dos dados, refletindo oscilações significativas ao longo dos anos. O menor valor registrado ocorreu em 1990 (`r valor_min_importacao_format`), enquanto o maior foi observado em 2022 (`r valor_max_importacao_format`).
+O desvio padrão, próximo de US$ `r dp_importacao_format_arred` bilhões, evidencia uma elevada dispersão dos dados, refletindo oscilações significativas ao longo dos anos. O menor valor registrado ocorreu em 1990 (US$ `r valor_min_importacao_arred` bilhões), enquanto o maior foi observado em 2022 (US$ `r valor_max_importacao_arred` bilhões).
 
-Em termos de crescimento, a série apresenta um aumento total de aproximadamente `r total_crescimento_importacao_format` entre o primeiro e o último ano, o que corresponde a um crescimento percentual acumulado de cerca de `r percentual_cresc_importacao_arred`. Já a taxa de crescimento anual composta (CAGR) é estimada em aproximadamente `r carg_percentual_importacao_arred` ao ano, indicando uma tendência consistente de expansão no longo prazo, apesar de períodos de retração, como observado em 2009 e entre 2014–2016.
+Em termos de crescimento, a série apresenta um aumento total de aproximadamente US$ `r total_crescimento_importacao_arred` bilhões entre o primeiro e o último ano, o que corresponde a um crescimento percentual acumulado de cerca de `r percentual_cresc_importacao_arred`%. Já a taxa de crescimento anual composta (CAGR) é estimada em aproximadamente `r carg_percentual_importacao_arred`% ao ano, indicando uma tendência consistente de expansão no longo prazo, apesar de períodos de retração, como observado em 2009 e entre 2014–2016.
 
 | Métricas | Valores em bilhões de US$ |
 |----------|------:|
@@ -259,8 +310,14 @@ Em termos de crescimento, a série apresenta um aumento total de aproximadamente
 
 
 ```{r, fig.width=10, fig.height=3}
+# --------------------------------------------------------
+# Gráfico pib
+# --------------------------------------------------------
 result$processed_graphic_series$pib
 
+# --------------------------------------------------------
+# Variáveis 'limpas'
+# --------------------------------------------------------
 media_pib <- result$processed_metric_series$pib$resumo$media
 mediana_pib <- result$processed_metric_series$pib$resumo$mediana
 dp_pib <- result$processed_metric_series$pib$resumo$desvio_padrao
@@ -270,12 +327,21 @@ percentual_crescimento_pib <- result$processed_metric_series$pib$crescimento$cre
 carg_percentual_pib <- result$processed_metric_series$pib$crescimento$cagr_percentual
 total_crescimento_pib <- valor_max_pib - valor_min_pib
 
-media_pib_format_arred <- round(media_pib / 1e10, 2)
-mediana_pib_format_arred <- round(mediana_pib / 1e10, 2)
-dp_pib_format_arred <- round(dp_pib / 1e10, 2)
+# --------------------------------------------------------
+# Variáveis arredondadas
+# --------------------------------------------------------
+media_pib_format_arred <- round(media_pib / 1e12, 3)
+mediana_pib_format_arred <- round(mediana_pib / 1e12, 3)
+dp_pib_format_arred <- round(dp_pib / 1e12, 3)
+valor_max_pib_arred <- round(valor_max_pib / 1e12, 3)
+valor_min_pib_arred <- round(valor_min_pib / 1e12, 3)
+total_crescimento_pib_arred <- round(total_crescimento_pib / 1e12, 3)
 percentual_cresc_pib_arred <- round(percentual_crescimento_pib, 2)
 carg_percentual_pib_arred <- round(carg_percentual_pib, 2)
 
+# --------------------------------------------------------
+# Variáveis formatadas
+# --------------------------------------------------------
 media_pib_format <- format(media_pib, scientific = FALSE, big.mark = ".")
 mediana_pib_format <- format(mediana_pib, scientific = FALSE, big.mark = ".")
 dp_pib_format <- format(dp_pib, scientific = FALSE, big.mark = ".")
@@ -284,13 +350,13 @@ valor_max_pib_format <- format(valor_max_pib, scientific = FALSE, big.mark = "."
 total_crescimento_pib_format <- format(total_crescimento_pib, scientific = FALSE, big.mark = ".")
 ```
 
-A série histórica do Produto Interno Bruto (PIB) evidencia uma trajetória de crescimento ao longo do período analisado, ainda que marcada por oscilações em determinados intervalos. O valor médio do PIB foi de aproximadamente `r media_pib_format_arred`, enquanto a mediana situou-se em torno de `r mediana_pib_format_arred`, sugerindo uma distribuição levemente assimétrica, com maior concentração de valores mais elevados nos anos recentes.
+A série histórica do Produto Interno Bruto (PIB) evidencia uma trajetória de crescimento ao longo do período analisado, ainda que marcada por oscilações em determinados intervalos. O valor médio do PIB foi de aproximadamente US$ `r media_pib_format_arred` trilhões, enquanto a mediana situou-se em torno de US$ `r mediana_pib_format_arred` trilhões, sugerindo uma distribuição levemente assimétrica, com maior concentração de valores mais elevados nos anos recentes.
 
-O desvio padrão, estimado em cerca de `r dp_pib_format_arred`, indica uma dispersão significativa dos dados, refletindo variações relevantes na atividade econômica ao longo do tempo. O menor valor foi registrado em 1990 (`r valor_min_pib_format`), enquanto o maior ocorreu em 2011 (`r valor_max_pib_format`).
+O desvio padrão, estimado em cerca de US$ `r dp_pib_format_arred` trilhões, indica uma dispersão significativa dos dados, refletindo variações relevantes na atividade econômica ao longo do tempo. O menor valor foi registrado em 1990 (US$ `r valor_min_pib_arred` trilhões), enquanto o maior ocorreu em 2011 (US$ `r valor_max_pib_arred` trilhões).
 
-No que se refere ao crescimento, o PIB apresentou um aumento total de aproximadamente `r total_crescimento_pib_format` entre 1990 e 2023, o que corresponde a um crescimento percentual acumulado de cerca de `r percentual_cresc_pib_arred`%. A taxa de crescimento anual composta (CAGR) é estimada em aproximadamente `r carg_percentual_pib_arred` ao ano, indicando uma expansão consistente no longo prazo, apesar de períodos de desaceleração, como observado após 2014 e durante o impacto econômico de 2020.
+No que se refere ao crescimento, o PIB apresentou um aumento total de aproximadamente US$ `r total_crescimento_pib_arred` trilhões entre 1990 e 2023, o que corresponde a um crescimento percentual acumulado de cerca de `r percentual_cresc_pib_arred`%. A taxa de crescimento anual composta (CAGR) é estimada em aproximadamente `r carg_percentual_pib_arred`% ao ano, indicando uma expansão consistente no longo prazo, apesar de períodos de desaceleração, como observado após 2014 e durante o impacto econômico de 2020.
 
-| Métricas | Valores em tilhões de US$ |
+| Métricas | Valores em trilhões de US$ |
 |----------|------:|
 | Média Aritmética | `r media_pib_format` | 
 | Mediana | `r mediana_pib_format` | 
@@ -307,8 +373,14 @@ No que se refere ao crescimento, o PIB apresentou um aumento total de aproximada
 ## Indicador de População 1990 - 2023  
 
 ```{r, fig.width=10, fig.height=3}
+# --------------------------------------------------------
+# Gráfico população
+# --------------------------------------------------------
 result$processed_graphic_series$populacao
 
+# --------------------------------------------------------
+# Variáveis 'limpas'
+# --------------------------------------------------------
 media_populacao <- result$processed_metric_series$populacao$resumo$media
 mediana_populacao <- result$processed_metric_series$populacao$resumo$mediana
 dp_populacao <- result$processed_metric_series$populacao$resumo$desvio_padrao
@@ -318,12 +390,21 @@ percentual_crescimento_populacao <- result$processed_metric_series$populacao$cre
 carg_percentual_populacao <- result$processed_metric_series$populacao$crescimento$cagr_percentual
 total_crescimento_populacao <- valor_max_populacao - valor_min_populacao
 
-media_populacao_format_arred <- round(media_populacao / 1e6, 2)
-mediana_populacao_format_arred <- round(mediana_populacao / 1e6, 2)
-dp_populacao_format_arred <- round(dp_populacao / 1e6, 2)
+# --------------------------------------------------------
+# Variáveis arredondadas
+# --------------------------------------------------------
+media_populacao_format_arred <- round(media_populacao / 1e6, 3)
+mediana_populacao_format_arred <- round(mediana_populacao / 1e6, 3)
+dp_populacao_format_arred <- round(dp_populacao / 1e6, 3)
+valor_max_populacao_arred <- round(valor_max_populacao / 1e6, 3)
+valor_min_populacao_arred <- round(valor_min_populacao / 1e6, 3)
+total_crescimento_populacao_arred <- round(total_crescimento_populacao / 1e6, 3)
 percentual_cresc_populacao_arred <- round(percentual_crescimento_populacao, 2)
 carg_percentual_populacao_arred <- round(carg_percentual_populacao, 2)
 
+# --------------------------------------------------------
+# Variáveis formatadas
+# --------------------------------------------------------
 media_populacao_format <- format(media_populacao, scientific = FALSE, big.mark = ".")
 mediana_populacao_format <- format(mediana_populacao, scientific = FALSE, big.mark = ".")
 dp_populacao_format <- format(dp_populacao, scientific = FALSE, big.mark = ".")
@@ -334,9 +415,9 @@ total_crescimento_populacao_format <- format(total_crescimento_populacao, scient
 
 A série histórica da população evidencia um crescimento contínuo e estável ao longo do período analisado, sem oscilações abruptas. O valor médio da população foi de aproximadamente `r media_populacao_format_arred` milhões de habitantes, enquanto a mediana situou-se em torno de `r mediana_populacao_format_arred` milhões, indicando uma distribuição levemente assimétrica à direita, com maior concentração de valores nos anos mais recentes.
 
-O desvio padrão, estimado em cerca de `r dp_populacao_format_arred` milhões de habitantes, revela uma dispersão moderada, compatível com um crescimento gradual ao longo do tempo. O menor valor foi registrado em 1990 (`r valor_min_populacao_format` milhões), enquanto o maior ocorreu em 2023 (`r valor_max_populacao_format` milhões).
+O desvio padrão, estimado em cerca de `r dp_populacao_format_arred` milhões de habitantes, revela uma dispersão moderada, compatível com um crescimento gradual ao longo do tempo. O menor valor foi registrado em 1990 (`r valor_min_populacao_arred` milhões), enquanto o maior ocorreu em 2023 (`r valor_max_populacao_arred` milhões).
 
-Em termos de crescimento, a população apresentou um aumento total de aproximadamente `r total_crescimento_populacao_format` milhões de habitantes no período, o que corresponde a um crescimento percentual acumulado de cerca de `r percentual_cresc_populacao_arred`%. A taxa de crescimento anual composta (CAGR) é estimada em aproximadamente `r carg_percentual_populacao_arred`% ao ano, evidenciando uma expansão demográfica consistente, porém em ritmo moderado e estável ao longo das últimas décadas.
+Em termos de crescimento, a população apresentou um aumento total de aproximadamente `r total_crescimento_populacao_arred` milhões de habitantes no período, o que corresponde a um crescimento percentual acumulado de cerca de `r percentual_cresc_populacao_arred`%. A taxa de crescimento anual composta (CAGR) é estimada em aproximadamente `r carg_percentual_populacao_arred`% ao ano, evidenciando uma expansão demográfica consistente, porém em ritmo moderado e estável ao longo das últimas décadas.
 
 | Métricas | Valores em milhões |
 |----------|------:|
