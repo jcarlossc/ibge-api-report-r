@@ -37,7 +37,7 @@ ibge-api-report-r/
 ├── README.md
 ├── renv/
 ├── renv.lock
-├── reoprts/
+├── reports/
 │       ├── ibge.jpg
 │       ├── relatorio.pdf
 │       └── relatorio.Rmd
