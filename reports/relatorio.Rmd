@@ -62,6 +62,7 @@ knitr::opts_chunk$set(
 # --------------------------------------------------------
 library(yaml)
 library(here)
+library(logger)
 
 # --------------------------------------------------------
 # Leitura de arquivos de configuração
@@ -86,6 +87,8 @@ source(here("main.R"))
 # Retorno do arquivo main
 # --------------------------------------------------------
 result <- main()
+
+log_info("Início da geração do Relatório")
 ```
 
 \newpage
@@ -447,3 +450,7 @@ Armazenamento dos dados em banco relacional para análises históricas
 Implementação de pipelines automatizados para atualização contínua
 
 Dessa forma, este trabalho não apenas apresenta uma aplicação prática do consumo de APIs públicas, mas também estabelece uma base sólida para evoluções em projetos de engenharia e análise de dados.
+
+```{r}
+log_info("Término da geração do Relatório")
+```
