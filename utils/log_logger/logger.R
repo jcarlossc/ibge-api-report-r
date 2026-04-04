@@ -24,6 +24,9 @@
 # O comportamento do logger é configurado dinamicamente via config.yaml.
 # ----------------------------------------------------------------------
 
+# ------------------------------------------------------
+# Pacotes utilizados
+# ------------------------------------------------------
 library(logger)
 library(glue)
 library(yaml)

@@ -4,15 +4,15 @@
 # implementação de relatório Estatístico.
 # Autor: Carlos da Costa
 # Localização: Recife, Pernambuco - Brasil
-# Data de criação: 31/03/2026
+# Data de criação: 04/04/2026
 # Última modificação: 31/03/2026
 # Versão: 1.0.0
 # Ambiente: development
 #
 # ----------------------------------------------------------------------
 # Descrição:
-# Pipeline principal de ingestão, processamento e análise de
-# dados da API do IBGE.
+# Pipeline principal de ingestão, processamento e análise e 
+# visualização de dados da API do IBGE.
 #
 # Responsabilidades:
 #   - Carregar configurações (YAML)
@@ -20,7 +20,7 @@
 #   - Consumir múltiplos indicadores da API
 #   - Aplicar retry em falhas de requisição
 #   - Processar dados para visualização e métricas
-#   - Retornar estrutura final consolidada
+#   - Retornar estrutura final consolidada 
 #
 # Retorno:
 # - lista para ser usada em relatório R Markdown.
@@ -48,11 +48,9 @@ config_retry <- suppressWarnings(
 )
 
 # --------------------------------------------------------
-# Leitura de arquivos de configuração
+# Importação de módulos do projeto
 # --------------------------------------------------------
-# paths.yaml: define caminhos de arquivos e diretórios
-# config_env.yaml: parâmetros de ambiente (retry, etc.)
-# suppressWarnings evita poluição de logs por warnings não críticos
+# Estrutura modular para separação de responsabilidades
 # --------------------------------------------------------
 source(here(config_paths$src$api))
 source(here(config_paths$utils$logger))
@@ -136,6 +134,9 @@ main <- function(){
     
     log_info(enc2utf8("##### Término do pipeline - main() #####"))
 
+    # --------------------------------------------------------
+    # Retorno que sera usado no relatório
+    # --------------------------------------------------------  
     return(results_list)
     
   }, error = function(e) {
