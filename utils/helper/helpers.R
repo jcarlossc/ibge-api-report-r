@@ -5,7 +5,7 @@
 # Autor: Carlos da Costa
 # Localização: Recife, Pernambuco - Brasil
 # Data de criação: 30/03/2026
-# Última modificação: 30/03/2026
+# Última modificação: 04/04/2026
 # Versão: 1.0.0
 # Ambiente: development
 #
@@ -16,9 +16,11 @@
 # leitura de arquivos ou conexões externas.
 #
 # Parâmetros:
-#   - func        : função a ser executada (deve ser passada sem executar)
-#   - tentativas  : número máximo de tentativas (default = 3)
-#   - espera      : tempo de espera (em segundos) entre tentativas (default = 5)
+#   - func                  : função a ser executada (deve ser passada 
+#                             sem executar)
+#   - tentativas(attempts)  : número máximo de tentativas (default = 3)
+#   - espera(wait)          : tempo de espera (em segundos) entre 
+#                             tentativas (default = 5)
 #
 # Retorno:
 #   - Retorna o resultado da função `func` caso seja bem-sucedida
