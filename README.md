@@ -4,7 +4,8 @@ Pipeline de ingestão, processamento, análise de dados e geração de relatóri
 engenharia de dados, modularização e resiliência.
 
 ## 📌 Relatório R Markdown
-[📄 Ver relatório completo](reports/relatorio.pdf)
+[📄 Ver relatório completo](reports/relatorio.pdf)<br>
+<a href="reports/relatorio.pdf">📄 Baixar relatório completo</a><br>
 
 ## 📌 Visão Geral
 
