@@ -5,7 +5,7 @@ engenharia de dados, modularização e resiliência.
 
 ## 📌 Relatório R Markdown
 [📄 Ver relatório completo](reports/relatorio.pdf)<br>
-<a href="reports/relatorio.pdf" download="Relatório_API_IBGE.pdf" target="_blank">📥 Baixar relatório completo</a><br>
+[📥 Baixar relatório completo](https://raw.githubusercontent.com/jcarlossc/ibge-api-report-r/main/reports/relatorio.pdf)
 
 ## 📌 Visão Geral
 
