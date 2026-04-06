@@ -180,6 +180,7 @@ ibge-api-report-r/reports/relatorio.Rmd
 Este projeto está licenciado sob MIT License.
 
 ## 📌 Contato
+* Autor: Carlos da Costa<br>
 * Recife, PE - Brasil<br>
 * Telefone: +55 81 99712 9140<br>
 * Telegram: @jcarlossc<br>
