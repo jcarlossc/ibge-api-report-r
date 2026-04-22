@@ -184,7 +184,6 @@ Este projeto está licenciado sob MIT License.
 * Recife, PE - Brasil<br>
 * Telefone: +55 81 99712 9140<br>
 * Telegram: @jcarlossc<br>
-* Pypi: https://pypi.org/user/jcarlossc/<br>
 * Blogger linguagem R: [https://informaticus77-r.blogspot.com/](https://informaticus77-r.blogspot.com/)<br>
 * Blogger linguagem Python: [https://informaticus77-python.blogspot.com/](https://informaticus77-python.blogspot.com/)<br>
 * Email: jcarlossc1977@gmail.com<br>
