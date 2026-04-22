@@ -65,20 +65,6 @@ library(here)
 library(logger)
 
 # --------------------------------------------------------
-# Leitura de arquivos de configuração
-# --------------------------------------------------------
-# paths.yaml: define caminhos de arquivos e diretórios
-# config_env.yaml: parâmetros de ambiente (retry, etc.)
-# suppressWarnings evita poluição de logs por warnings não críticos
-# --------------------------------------------------------
-config_paths <- suppressWarnings(
-  yaml::read_yaml(here("config_yaml", "paths.yaml"))
-)
-config_retry <- suppressWarnings(
-  yaml::read_yaml(here("config_yaml", "config_env.yaml"))
-)
-
-# --------------------------------------------------------
 # Importe do arquivo main
 # --------------------------------------------------------
 source(here("main.R"))

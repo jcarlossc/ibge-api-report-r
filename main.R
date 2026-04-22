@@ -41,10 +41,10 @@ library(logger)
 # suppressWarnings evita poluição de logs por warnings não críticos
 # --------------------------------------------------------
 config_paths <- suppressWarnings(
-  yaml::read_yaml(here("config_yaml", "paths.yaml"))
+  yaml::read_yaml(here("config", "paths.yaml"))
 )
 config_retry <- suppressWarnings(
-  yaml::read_yaml(here("config_yaml", "config_env.yaml"))
+  yaml::read_yaml(here("config", "config_env.yaml"))
 )
 
 # --------------------------------------------------------

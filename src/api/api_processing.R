@@ -33,6 +33,7 @@
 # --------------------------------------------------------
 library(jsonlite)
 library(tibble)
+library(glue)
 library(logger)
 
 # --------------------------------------------------------
@@ -50,6 +51,8 @@ get_api <- function(url){
     # ----------------------------------------
     # Valida URL
     # ----------------------------------------
+    log_debug("Validando parâmetro 'url'")
+    
     if (missing(url) || !is.character(url) || nchar(url) == 0) {
       stop("[VALIDATION_ERROR] URL inválida")
     }
@@ -58,6 +61,7 @@ get_api <- function(url){
       stop("[VALIDATION_ERROR] URL deve começar com http ou https")
     }
     
+    log_info("URL validada com sucesso")
     # ---------------------------------------------------------
     # 3. Consumo da API
     # ---------------------------------------------------------
@@ -65,9 +69,13 @@ get_api <- function(url){
     
     data_api <- fromJSON(url, simplifyVector = FALSE)
     
+    log_debug("Resposta recebida da API")
+    
     # ----------------------------------------
     # Validação da estrutura da resposta
     # ----------------------------------------
+    log_info("Validando estrutura da resposta")
+    
     if (!is.list(data_api) || length(data_api) == 0) {
       stop("[DATA_ERROR] Estrutura da resposta inválida ou vazia")
     }
@@ -85,6 +93,8 @@ get_api <- function(url){
     # ---------------------------------------------------------
     # Transformação dos dados
     # ---------------------------------------------------------
+    log_info("Transformando dados")
+    
     values <- unlist(data_api[[1]]$series[[1]]$serie)
     
     values_tibble <- tibble(
@@ -97,11 +107,13 @@ get_api <- function(url){
       assunto = data_api[[1]]$unidade$id
     )
     
-    log_info("Transformação dos dados concluída")
+    log_info(glue("[STEP 4] Transformação concluída | Registros: {nrow(values_tibble)}"))
     
     # ---------------------------------------------------------
     # Retorno final
     # ---------------------------------------------------------
+    log_info("Função executada com sucesso")
+    
     return(list(
       values_tibble = values_tibble,
       metadata_tibble = metadata_tibble
