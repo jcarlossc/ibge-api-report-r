@@ -41,18 +41,17 @@ library(glue)
 # --------------------------------------------------------
 get_graphics <- function(tibble_files) {
   
+  log_info(glue(
+    "Iniciando geração do gráfico ** {tibble_files$metadata_tibble$titulo} **"
+  ))
+  
   tryCatch({
-    
-    # --------------------------------------------------------
-    # Início do processamento gráfico
-    # --------------------------------------------------------
-    log_info(glue(
-      "Iniciando geração do gráfico ** {tibble_files$metadata_tibble$titulo} **"
-    ))
     
     # ---------------------------------------------------------
     # 2. Validação de entrada
     # ---------------------------------------------------------
+    log_debug("Validando objeto de entrada")
+    
     if (missing(tibble_files) || !is.list(tibble_files)) {
       stop("[VALIDATION_ERROR] Parâmetro 'tibble_files' inválido ou não informado")
     }
@@ -68,16 +67,18 @@ get_graphics <- function(tibble_files) {
     # ---------------------------------------------------------
     # Validação de colunas obrigatórias
     # ---------------------------------------------------------
+    log_debug("Validando colunas obrigatórias")
+    
     required_cols <- c("ano", "valor")
     
     if (!all(required_cols %in% names(tibble_files$values_tibble))) {
       stop("[DATA_ERROR] Colunas obrigatórias 'ano' e 'valor' não encontradas")
     }
     
-    log_info("Estrutura de entrada validada com sucesso")
+    log_info("Estrutura de colunas validada com sucesso")
     
     # ---------------------------------------------------------
-    # Gráfico
+    # Construção dos gráficos
     # ---------------------------------------------------------
     graphic <- ggplot(tibble_files$values_tibble, aes(x = ano, y = valor)) +
       
@@ -118,6 +119,8 @@ get_graphics <- function(tibble_files) {
         panel.grid.minor = element_blank(),
         panel.grid.major = element_line(color = "gray85")
       )
+    
+    log_debug("Gráficos gerados com sucesso")
     
     # ---------------------------------------------------------
     # Retorno

@@ -43,6 +43,8 @@ get_statistics <- function(tibble_files) {
     # ---------------------------------------------------------
     # Validação de entrada
     # ---------------------------------------------------------
+    log_debug("[Validando dados de entrada")
+    
     if (missing(tibble_files) || !is.data.frame(tibble_files)) {
       stop("[VALIDATION_ERROR] Objeto 'tibble_files' inválido ou não informado")
     }
@@ -55,14 +57,20 @@ get_statistics <- function(tibble_files) {
       stop("[VALIDATION_ERROR] A coluna 'valor' deve ser numérica")
     }
     
+    log_info("Estrutura validada com sucesso")
+    
     # ---------------------------------------------------------
     # Ordenação dos dados
     # ---------------------------------------------------------
+    log_info("Ordenando série temporal")
+    
     tibble_files <- tibble_files[order(tibble_files$ano), ]
     
     # ---------------------------------------------------------
     # Estatísticas básicas
     # ---------------------------------------------------------
+    log_info("Calculando estatísticas básicas")
+    
     media <- mean(tibble_files$valor, na.rm = TRUE)
     mediana <- median(tibble_files$valor, na.rm = TRUE)
     minimo <- min(tibble_files$valor, na.rm = TRUE)
@@ -71,7 +79,7 @@ get_statistics <- function(tibble_files) {
     
     # ---------------------------------------------------------
     # Crescimento total (%)
-    # ---------------------------------------------------------
+    # --------------------------------------------------------
     valor_inicial <- tibble_files$valor[1]
     valor_final <- tibble_files$valor[nrow(tibble_files)]
     
